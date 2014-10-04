@@ -1,0 +1,20 @@
+@import "less-mixins/utils.less";
+@import "variables.less";
+
+html, body {
+    height: 100%;
+}
+
+* {
+    .box-sizing(border-box);
+}
+
+.wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.wrapper-padded {
+    .wrapper;
+    padding: 2em 0;
+}

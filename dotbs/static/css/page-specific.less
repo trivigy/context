@@ -1,0 +1,54 @@
+@import "less-mixins/utils.less";
+@import "variables.less";
+
+#page-index {
+    position: relative;
+    
+    .splash-menu {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        height: 170px;
+        margin-left: -340px;
+        margin-top: -110px;
+        padding: 0;
+        text-align: center;
+
+        .splash-menu-icon {
+            float: left;
+            width: 170px;
+            height: 170px;
+            padding: 20px;
+            list-style: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            // border-right: 1px solid #797979;
+            margin-right: 2px;
+
+            &:nth-child(0n+1) {
+                // margin-right: 0;
+                background: url(../images/icons/photo82.svg) center no-repeat rgba(222, 78, 78, 0.8);
+                background-size: 40%;
+            }
+
+            &:nth-child(0n+2) {
+                background: url(../images/icons/fountain.svg) center no-repeat rgba(255, 255, 255, 0.8);
+                background-size: 35%;
+            }
+
+            &:nth-child(0n+3) {
+                background: url(../images/icons/photo67.svg) center no-repeat rgba(255, 255, 255, 0.8);
+                background-size: 45%;
+            }
+
+            &:nth-child(0n+4) {
+                background: url(../images/icons/airplane79.svg) center no-repeat rgba(255, 255, 255, 0.8);
+                background-size: 29%;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
