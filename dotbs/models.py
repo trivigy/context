@@ -3,6 +3,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn import metrics
 import pandas as pd
 from selenium import webdriver
+import json
 
 class Model():
     def __init__(self):
@@ -13,7 +14,7 @@ class Model():
         }
 
         self.vectorizer = TfidfVectorizer(min_df = 1)
-        db = pd.read_json("data.txt")
+        db = pd.DataFrame({'raw_text': "data.txt", 'gender': 0})
         X = []
         for each in db['raw_text']:
             X.append(each.encode('utf-8').strip())
