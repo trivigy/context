@@ -76,10 +76,8 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_DIR, 'templates'),)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/path/to/my.cnf',
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
