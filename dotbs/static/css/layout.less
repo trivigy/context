@@ -1,6 +1,15 @@
 @import "less-mixins/utils.less";
 @import "variables.less";
 
+body {
+    background: url('../images/bg-library.jpg') repeat center center fixed;
+    // background: url('../images/bg-typewriter.jpg') repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 html, body {
     height: 100%;
 }
@@ -9,12 +18,72 @@ html, body {
     .box-sizing(border-box);
 }
 
+h1 {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+    font-size: 3.5em;
+    font-weight: 100;
+    color: white;
+}
+
+h2 {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+    font-size: 1.5em;
+    font-weight: 100;
+    color: white;
+}
+
 .wrapper {
     max-width: 960px;
     margin: 0 auto;
+    padding: 10em 0;
 }
 
 .wrapper-padded {
     .wrapper;
     padding: 2em 0;
+}
+
+.red {
+    color: red;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.light-weight {
+    font-weight: 300;
+}
+
+.section-form {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    padding: 3.5em 4em;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.section-results {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    padding: 3.5em 4em;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.article-input-form {
+    // text-align: center;
+
+    .form-field {
+        width: 80%;
+        font-size: 1.1em;
+        margin: 2em 0 0 0;
+        padding: 1em 1.6667em;
+        border: 0;
+        border-bottom: 2px solid #ddd;
+        outline: none;
+        text-align: center;
+    }
 }

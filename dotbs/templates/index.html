@@ -5,8 +5,12 @@
 {% block body %}
 
 <div class="wrapper">
-	<section class="section">
-		<h1>dotbs</h1>
+	<section class="section-form">
+		<h1>Media shouldnt be <span class="red light-weight">biased</span></h1>
+	    <form action="/analyze" method="GET" class="article-input-form">
+	        <input class="form-field" name="url" type="url">
+	        <input class="button-submit" type="submit" value="Enter a URL" />
+	    </form>
 	</section>
 </div>
 
