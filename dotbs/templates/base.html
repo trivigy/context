@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{% block title %}Gene Gurvich{% endblock %}</title>
+        <title>{% block title %}dot bs{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         {# <link rel="author" href="{% url 'humans' %}" /> #}
@@ -22,6 +22,7 @@
             <link rel="stylesheet{% if debug %}/less{% endif %}" type="text/less" href="{{ STATIC_URL }}css/layout.less">
             <link rel="stylesheet{% if debug %}/less{% endif %}" type="text/less" href="{{ STATIC_URL }}css/components.less">
             <link rel="stylesheet{% if debug %}/less{% endif %}" type="text/less" href="{{ STATIC_URL }}css/page-specific.less">
+            <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,100italic,300italic,400italic' rel='stylesheet' type='text/css'>
             {# {% endcompress %} #}
         {% endblock %}
 
