@@ -13,7 +13,9 @@ def index(request):
 
 def analyze(request):
     url = request.GET['url']
-    response = urllib2.urlopen(url)
+    opener = urllib2.build_opener()
+    opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:15.0) Gecko/20120427 Firefox/15.0a1')]
+    response = opener.open(url)
     raw_html = response.read().encode('utf-8').decode('ascii')
 
     cleaner = Cleaner(kill_tags = ['style', 'script', 'head'], allow_tags = [''], remove_unknown_tags = False)
