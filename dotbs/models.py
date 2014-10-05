@@ -1,33 +1,36 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
+import requests
 from sklearn import metrics
 import pandas as pd
 import json
 
 class Model():
     def __init__(self):
-        self._labels = {
-            0 : 'Reliable',
-            1 : 'Not Reliable'
-        }
+        db = pd.read_json('data.txt')
+        raw_data = []
+        for i in range(len(db['raw_text'])):
+            raw_data.append(db['raw_text'][i].encode('utf-8').strip())    
+        self.Vectorizer = TfidfVectorizer(min_df=1)
+        self.X_train = self.Vectorizer.fit_transform(raw_data)
+        self.y_train = db['bull']
+        self.clf = DecisionTreeClassifier().fit(self.X_train.toarray(),self.y_train)
 
-        self.vectorizer = TfidfVectorizer(min_df = 1)
-        db = pd.read_json("gender.txt")
-        X = []
-        for each in db['raw_text']:
-            X.append(each.encode('utf-8').strip())
-        X_train = self.vectorizer.fit_transform(X)
-        self.y_train = db['gender']
-        self.clf = GaussianNB().fit(X_train.toarray(), self.y_train)
+    def predict(self,x):
+        categories = ['no bias','bias']
+        Vct_data = self.Vectorizer.transform([x])
+        return categories[self.clf.predict(Vct_data.toarray())] ,metrics.f1_score(self.y_train,self.clf.predict(self.X_train.toarray()))
 
-    def predict(self, key):
-        return self.clf.predict(self.vectorizer.transform(key).toarray())[0]
-
-    def score(self):
-        metrics.f1_score(self.y_train, self.clf.predict(X_test.toarray()))
-
-    def label(self, n):
-        return self._labels.get(n)
-
+    def predict_other(self,x):
+        categories = ['no bias','bias']
+        data = []
+        result=requests.post('https://api.idolondemand.com/1/api/sync/findsimilar/v1',data={'text':x,'apikey':'34fd5236-4d37-440f-99f6-16985435b18d','indexes':'news_eng','print':'all'}).json()
+        for doc in result["documents"]:
+            Vct_other_data = self.Vectorizer.transform([doc['content']])
+            result=self.clf.predict(Vct_other_data.toarray())
+            score = metrics.f1_score(self.y_train,self.clf.predict(self.X_train.toarray()))
+            title = doc['title']
+            data.append([categories[result],score,title])
+            return data
 
 MLearn = Model()
