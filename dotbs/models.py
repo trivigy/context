@@ -41,6 +41,6 @@ class Model():
             elif score[0] == 1:
                 score = random.uniform(0.0, 0.5)
             data.append([categories[result], score, title])
-            return data
+        return data
 
 MLearn = Model()
