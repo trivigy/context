@@ -6,7 +6,14 @@
 
 <div class="wrapper">
 	<section class="section-results">
-		<h1>Results for <span class="red light-weight">{{ url }}</span></h1>
+		<h1>Results for</h1>
+		<h2><div class="url red light-weight">{{ url }}</div></h2>
+		<h2>{{ verdict }}</h2>
+		<div class="donut-primary" data-donut="{{ score }}"></div>
+		<h1>Related results</h1><br>
+		<h2>{{ related_headline }}</h2>
+		<span class="red light-weight"><h2>{{ related_verdict }}</h2></span>
+		<div class="donut-secondary" data-donut="{{ related_score }}"></div>
 	</section>
 </div>
 

@@ -26,6 +26,20 @@ def analyze(request):
     raw_text = re.sub(ptn, ' ', raw_text)
     raw_text = raw_text.strip().lower()
     prd, score = MLearn.predict(raw_text)
-    result = MLearn.predict_other(raw_text)
+    donut = score * 100
+    results = MLearn.predict_other(raw_text)
+    related_headline = results[0][2]
+    related_verdict = results[0][0]
+    related_score = results[0][1] * 100
 
-    return render(request, 'results.html', {'url': result})
+    context = {
+    	'url': url,
+    	'verdict': prd,
+    	'score': donut,
+    	'related_headline': related_headline,
+    	'related_verdict': related_verdict,
+    	'related_score': related_score,
+    	'results': results,
+    }
+
+    return render(request, 'results.html', context)

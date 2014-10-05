@@ -4,6 +4,7 @@ import requests
 from sklearn import metrics
 import pandas as pd
 import json
+import random
 
 class Model():
     def __init__(self):
@@ -20,10 +21,10 @@ class Model():
         categories = ['no bias','bias']
         Vct_data = self.Vectorizer.transform([x])
         score = self.clf.predict(self.X_train.toarray())
-            if score[0] == 0:
-                score = random.uniform(0.5, 1.0)
-            elif score[0] == 1:
-                score = random.uniform(0.0, 0.5)
+        if score[0] == 0:
+            score = random.uniform(0.5, 1.0)
+        elif score[0] == 1:
+            score = random.uniform(0.0, 0.5)
         return categories[self.clf.predict(Vct_data.toarray())], score
 
     def predict_other(self,x):
