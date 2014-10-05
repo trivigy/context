@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from .forms import ArticleInputForm
-# from dotbs.models import SOMESHIT
+from dotbs.models import MLearn
 
 def index(request):
 	form = ArticleInputForm()
