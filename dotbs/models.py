@@ -2,9 +2,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
 from sklearn import metrics
 import pandas as pd
+from selenium import webdriver
 
 class Model():
     def __init__(self):
+	self.driver = webdriver.PhantomJS()
         self._labels = {
             0 : 'Reliable',
             1 : 'Not Reliable'
