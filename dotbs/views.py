@@ -16,7 +16,7 @@ def analyze(request):
     opener = urllib2.build_opener()
     opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:15.0) Gecko/20120427 Firefox/15.0a1')]
     response = opener.open(url)
-    raw_html = response.read().encode('utf-8', 'ignore').decode('ascii', 'ignore')
+    raw_html = response.read()
 
     cleaner = Cleaner(kill_tags = ['style', 'script', 'head'], allow_tags = [''], remove_unknown_tags = False)
     raw_text = cleaner.clean_html(raw_html)
