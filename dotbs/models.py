@@ -11,7 +11,7 @@ class Model():
         }
 
         self.vectorizer = TfidfVectorizer(min_df = 1)
-        db = pd.read_json(data)
+        db = pd.read_json("data.txt")
         X = []
         for each in db['raw_text']:
             X.append(each.encode('utf-8').strip())
