@@ -76,12 +76,10 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_DIR, 'templates'),)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dotbs',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': '/path/to/my.cnf',
+        },
     }
 }
 
