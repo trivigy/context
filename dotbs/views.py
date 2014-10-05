@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from lxml.html.clean import Cleaner
 import re
+import urllib2
 
 from .forms import ArticleInputForm
 from dotbs.models import MLearn
@@ -11,12 +12,9 @@ def index(request):
     return render(request, 'index.html', {'form': form})
 
 def analyze(request):
-    url = "http://www.bbc.com/news/world-asia-china-29489387"# request.GET['url']
-
-    if MLearn.driver is None:
-        raise AttributeError("Attempted to parse url without selenium driver")
-    MLearn.driver.get(url)
-    raw_html = MLearn.driver.page_source
+    url = request.GET['url']
+    response = urllib2.urlopen(url)
+    raw_html = response.read().encode('utf-8').decode('ascii')
 
     cleaner = Cleaner(kill_tags = ['style', 'script', 'head'], allow_tags = [''], remove_unknown_tags = False)
     raw_text = cleaner.clean_html(raw_html)

@@ -2,19 +2,17 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
 from sklearn import metrics
 import pandas as pd
-from selenium import webdriver
 import json
 
 class Model():
     def __init__(self):
-	self.driver = webdriver.PhantomJS()
         self._labels = {
             0 : 'Reliable',
             1 : 'Not Reliable'
         }
 
         self.vectorizer = TfidfVectorizer(min_df = 1)
-        db = pd.DataFrame({'raw_text': "data.txt", 'gender': 0})
+        db = pd.read_json("gender.txt")
         X = []
         for each in db['raw_text']:
             X.append(each.encode('utf-8').strip())
