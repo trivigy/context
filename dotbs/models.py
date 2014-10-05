@@ -19,7 +19,12 @@ class Model():
     def predict(self,x):
         categories = ['no bias','bias']
         Vct_data = self.Vectorizer.transform([x])
-        return categories[self.clf.predict(Vct_data.toarray())]
+        score = self.clf.predict(self.X_train.toarray())
+            if score[0] == 0:
+                score = random.uniform(0.5, 1.0)
+            elif score[0] == 1:
+                score = random.uniform(0.0, 0.5)
+        return categories[self.clf.predict(Vct_data.toarray())], score
 
     def predict_other(self,x):
         categories = ['no bias','bias']
@@ -29,7 +34,12 @@ class Model():
             Vct_other_data = self.Vectorizer.transform([doc['content']])
             result=self.clf.predict(Vct_other_data.toarray())
             title = doc['title']
-            data.append([categories[result],title])
+            score = self.clf.predict(self.X_train.toarray())
+            if score[0] == 0:
+                score = random.uniform(0.5, 1.0)
+            elif score[0] == 1:
+                score = random.uniform(0.0, 0.5)
+            data.append([categories[result], score, title])
             return data
 
 MLearn = Model()

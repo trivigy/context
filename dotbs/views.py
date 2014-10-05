@@ -25,7 +25,7 @@ def analyze(request):
     ptn = re.compile('\s+')
     raw_text = re.sub(ptn, ' ', raw_text)
     raw_text = raw_text.strip().lower()
-    prd = MLearn.predict(raw_text)
+    prd, score = MLearn.predict(raw_text)
     result = MLearn.predict_other(raw_text)
 
     return render(request, 'results.html', {'url': result})
