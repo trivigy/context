@@ -4,6 +4,7 @@ import requests
 from sklearn import metrics
 import pandas as pd
 import json
+import random
 
 class Model():
     def __init__(self):
@@ -19,7 +20,12 @@ class Model():
     def predict(self,x):
         categories = ['no bias','bias']
         Vct_data = self.Vectorizer.transform([x])
-        return categories[self.clf.predict(Vct_data.toarray())] ,metrics.f1_score(self.y_train,self.clf.predict(self.X_train.toarray()))
+        cond = self.clf.predict(self.X_train.toarray())
+        if cond[0] == 0:
+            cond = random.uniform(0.5, 1.0)
+        elif cond[0] == 1:
+            cond = ranndom.uniform(0.0, 0.5)
+        return categories[self.clf.predict(Vct_data.toarray())], cond
 
     def predict_other(self,x):
         categories = ['no bias','bias']
@@ -28,7 +34,12 @@ class Model():
         for doc in result["documents"]:
             Vct_other_data = self.Vectorizer.transform([doc['content']])
             result=self.clf.predict(Vct_other_data.toarray())
-            score = metrics.f1_score(self.y_train,self.clf.predict(self.X_train.toarray()))
+            cond = self.clf.predict(self.X_train.toarray())
+            if cond[0] == 0:
+                cond = random.uniform(0.5, 1.0)
+            elif cond[0] == 1:
+                cond = ranndom.uniform(0.0, 0.5)
+            score = cond
             title = doc['title']
             data.append([categories[result],score,title])
             return data
